@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="SceneFoundry: Generating Interactive Infinite 3D Worlds">
+  <meta name="keywords" content="AptScene, 3D Scene Generation, Embodied AI, Diffusion Models">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SceneFoundry: Generating Interactive Infinite 3D Worlds</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <!-- Bulma CSS Framework -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Academicons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <!-- Custom Styles (Simplified Nerfies Style) -->
+  <style>
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      background-color: #f7f7f7;
+    }
+    .title.is-1 {
+      font-family: 'Google Sans', sans-serif;
+      font-weight: 700;
+    }
+    .publication-title {
+      font-family: 'Google Sans', sans-serif;
+    }
+    .publication-authors {
+      font-family: 'Google Sans', sans-serif;
+      font-size: 1.2rem;
+    }
+    .publication-venue {
+      color: #555;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
+    .button.is-dark {
+      background-color: #363636;
+      border-color: transparent;
+      color: #fff;
+    }
+    .button.is-rounded {
+      border-radius: 290486px;
+      padding-left: 1.25em;
+      padding-right: 1.25em;
+    }
+    .hero-body {
+      padding: 3rem 1.5rem;
+    }
+    .container {
+      max-width: 960px;
+    }
+    .teaser-video, .pipeline-img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .paper-section {
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+    }
+    .bibtex-box {
+      background-color: #e9ecef;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.9rem;
+    }
+    .footer {
+      background-color: #f5f5f5;
+      padding: 3rem 1.5rem 3rem;
+    }
+  </style>
+
+  <!-- jQuery (necessary for some interactive elements if you add them later) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<!-- Title / Authors / Links Section -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          
+          <!-- Title -->
+          <h1 class="title is-1 publication-title">SceneFoundry: Generating Interactive Infinite 3D Worlds</h1>
+          
+          <!-- Links Buttons -->
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="button is-dark is-rounded is-normal">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              
+              <!-- Arxiv Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="button is-dark is-rounded is-normal">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="button is-dark is-rounded is-normal">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="button is-dark is-rounded is-normal">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <div class="content has-text-centered">
+           <img src="./images/teaser.jpg" alt="Teaser Image" class="pipeline-img">
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            Overview of <b>SceneFoundry</b>. The framework generates apartment-scale 3D scenes from natural language prompts via LLM-guided floor plan generation, diffusion-based placement, and post-optimization ensuring articulated functionality and robot navigability.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Abstract Section -->
+<section class="section paper-section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            The ability to automatically generate large-scale, interactive, and physically realistic 3D environments is crucial for advancing robotic learning and embodied intelligence. However, existing generative approaches often fail to capture the functional complexity of real-world interiors, particularly those containing articulated objects with movable parts essential for manipulation and navigation. This paper presents SceneFoundry, a language-guided diffusion framework that generates apartment-scale 3D worlds with functionally articulated furniture and semantically diverse layouts for robotic training. From natural language prompts, an LLM module controls floor layout generation, while diffusion-based posterior sampling efficiently populates the scene with articulated assets from large-scale 3D repositories. To ensure physical usability, SceneFoundry employs differentiable guidance functions to regulate object quantity, prevent articulation collisions, and maintain sufficient walkable space for robotic navigation. Extensive experiments demonstrate that our framework generates structurally valid, semantically coherent, and functionally interactive environments across diverse scene types and conditions, enabling scalable embodied AI research.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Pipeline Section -->
+<section class="section paper-section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Pipeline</h2>
+        <div class="content has-text-centered">
+          <img src="./images/pipeline.jpg" alt="Pipeline" class="pipeline-img">
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            Overview of our apartment-scale generation pipeline. An LLM first guides procedural floor plan generation, diffusion posterior guidance generates plausible room bounding boxes, and 3D assets from 3D-FRONT/GAPartNet are refined via post-optimization to complete the layout.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Model Section -->
+<section class="section paper-section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Model</h2>
+        <div class="content has-text-centered">
+          <img src="./images/model.jpg" alt="Model Pipeline" class="pipeline-img">
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            Guidance scheduling during the reverse diffusion process. Object quantity control is applied at t < 100 and articulated collision constraint at t < 10, followed by a final walkable-ratio optimization at t = 0 to generate a realistic scene.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Articollision Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Articulated Objects Collision Prevention</h2>
+        <div class="content has-text-centered">
+           <img src="./images/articollision_result.jpg" alt="Articollision Image" class="pipeline-img">
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            Visualization of the Articulated Object Collision Constraint. Synthesized scenes without the constraint (top) show obstructed articulated furniture, such as drawers that cannot open, while applying the constraint (bottom) enables proper motion and functional layouts.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Result Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Render Results</h2>
+        <div class="content has-text-centered">
+           <img src="./images/render_result.jpg" alt="Teaser Image" class="pipeline-img">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        This website is licensed under a <a rel="license"
+                                            href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+        Commons Attribution-ShareAlike 4.0 International License</a>.
+      </p>
+      <p>
+        Template adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
